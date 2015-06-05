@@ -23,10 +23,12 @@ public class TwitterFeed {// If you feel like checking: http://codebeautify.org/
 	private JSONParser parser;
 	
 	// "Keep the "Consumer Secret" a secret. This key should never be human-readable in your application." - Twitter 
-	// #YOLO - Leaving this in to minimize dependencies to other classes.
+	// Provide your own implementation or copy the keys and name of your app into this file.
+	// To generate this you need to register your app at Twitter. See http://apps.twitter.com/
 	private static final String CONSUMER_KEY = "";
 	private static final String CONSUMER_SECRET = "";
-	
+	private static final String APPNAME = "";	
+
 	private static final String API_URL = "https://api.twitter.com/";
 	
 	/** The URL for requesting data about the amount of requests left for the current timeframe. */
@@ -157,7 +159,7 @@ public class TwitterFeed {// If you feel like checking: http://codebeautify.org/
 			connection.setUseCaches(false);
 			connection.setRequestMethod("GET");
 			connection.setRequestProperty("Host", "api.twitter.com");
-			connection.setRequestProperty("User-Agent", "CIMS");
+			connection.setRequestProperty("User-Agent", APPNAME);
 		        connection.setRequestProperty("Authorization", "Bearer " + token);
 			return parser.parse(readResponse(connection));
 		} catch (IOException | ParseException ex) {
@@ -213,7 +215,7 @@ public class TwitterFeed {// If you feel like checking: http://codebeautify.org/
 	        connection.setDoInput(true);
 	        connection.setRequestMethod("POST");
 	        connection.setRequestProperty("Host", "api.twitter.com");
-	        connection.setRequestProperty("User-Agent", "CIMS");
+	        connection.setRequestProperty("User-Agent", APPNAME);
 	        connection.setRequestProperty("Authorization", "Basic " + encodedCredentials);
 	        connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8");
 	        connection.setRequestProperty("Content-Length", "29");
@@ -264,7 +266,7 @@ public class TwitterFeed {// If you feel like checking: http://codebeautify.org/
 		System.out.println(t.getStatus());
 
 		// TwitterFeed.getByTag():
-		System.out.println(t.getByTag("CIMS"));
+		System.out.println(t.getByTag(APPNAME));
 		
 		// TwitterFeed.getByTags():
 		System.out.println(t.getByTags(new String[]{"fontysict", "fontys"}));
