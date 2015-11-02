@@ -24,3 +24,4 @@ From here on you can call all it's functions, e.g.
 ```java
 String status = feed.getStatus();
 ```
+This will return the amount of requests you have left.
